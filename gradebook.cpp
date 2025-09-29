@@ -36,14 +36,36 @@ Student createStudent()
 
     newStudent.name = studentName; // assign user inputted name to new student
     newStudent.classGrade =
-        studentGrade; // assing user inputted grade to new student
+        studentGrade; // assign user inputted grade to new student
 
     return newStudent;
 }
 
 int main()
 {
+    const int COUNTER_CONTROL_CHOICE = 1, SENTINEL_CONTROL_CHOICE = 2,
+              PRINT_CHOICE = 3, QUIT_CHOICE = 4;
+
+    int userChoice; // declare variable for user choice
+
     vector<Student> userClass; // vector to store students
+
+    do
+    {
+        showMenu();
+        cin >> userChoice;
+
+        switch (userChoice)
+        {
+        case COUNTER_CONTROL_CHOICE:
+        case SENTINEL_CONTROL_CHOICE:
+        case PRINT_CHOICE:
+        case QUIT_CHOICE:
+        default:
+            cout << "placeholder";
+        }
+
+    } while (userChoice != QUIT_CHOICE);
 
     return 0;
 }
