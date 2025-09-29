@@ -14,6 +14,16 @@
 #include <vector>
 using namespace std;
 
+void showMenu()
+{
+    cout << "Choose action from the following: \n"
+         << "1. Enter a known number of students. (counter)" << "\n"
+         << "2. Enter an unknown number of students. (sentinel)" << "\n"
+         << "3. Print information about your students."
+         << "4. Quit the program" << "\n"
+         << "Enter your choice(1 - 4): ";
+}
+
 Student createStudent()
 {
     double studentGrade; // double to store the student grade
@@ -25,7 +35,8 @@ Student createStudent()
     cin >> studentName; // store student name
 
     newStudent.name = studentName; // assign user inputted name to new student
-    newStudent.classGrade = studentGrade; // assing user inputted grade to new student
+    newStudent.classGrade =
+        studentGrade; // assing user inputted grade to new student
 
     return newStudent;
 }
