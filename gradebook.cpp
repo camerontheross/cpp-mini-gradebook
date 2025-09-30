@@ -1,14 +1,68 @@
 /*
  * gradebook.cpp
  *  Written By: Cameron Ross
- *  Last Edit : 26 September 2025
+ *  Last Edit : 30 September 2025
  */
 
 #include "Student.h"
+#include <ios>
 #include <iostream>
+#include <limits> // used to clear max input buffer
 #include <string>
 #include <vector>
 using namespace std;
+
+// constants for max and min grades
+const double MAX_GRADE = 100, MIN_GRADE = 0;
+
+/*
+ *  Purpose :   Clear input
+ *  Input   :   None
+ *  Process :   Clear cin and ignore anything until enter key was hit
+ *  Output  :   None
+ */
+void clearInput()
+{
+    cin.clear(); // clears bad input
+
+    // discard characters from buffer
+    // uses largest possible number for input buffer
+    // stops when it reaches newline
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
+/*
+ *  Purpose :   take input and validate that it is within range
+ *  Input   :   double from cin
+ *  Process :   do while loop to take input until a valid value is given
+ *  Output  :   returns a double representing the students grade
+ */
+double getValidGradeFromInput()
+{
+    double studentGrade; // variable to store user grade
+    bool valueInRange;   // flag to check if user has input a valid value
+
+    do
+    {
+        cout << "Please enter a valid student grade (0 - 100): "; // Prompt for
+                                                                  // grade
+        cin >> studentGrade; // take input and store
+        valueInRange =
+            (studentGrade > MIN_GRADE &&
+             studentGrade < MAX_GRADE); // checks if student grade is in range
+
+        clearInput(); // clears input after numeric read
+
+        if (!valueInRange)
+        {
+            // inform user value is out of range
+            cout << "ERROR: Invalid value, please enter a number between (0 - "
+                    "100).\n";
+            cin.clear();
+        }
+    } while (!valueInRange);
+    return studentGrade;
+}
 /*
  *  Purpose :   output the main menu options
  *  Input   :   none
@@ -33,20 +87,28 @@ void showMenu()
  */
 Student createStudent()
 {
-    double studentGrade; // double to store the student grade
-    string studentName;  // string to store the student's name
-    Student newStudent;  // student struct that will be returned
+    string studentName; // string to store the student's name
+    Student newStudent; // student struct that will be returned
 
-    cout << "To add a student, Please enter a name and grade.\n"; // Prompt user
-                                                                  // for name
-    cin >> studentName; // store student name
+    cout << "To add a student, Please enter a name and grade.\n";
+    cout << "Enter the student's name: "; // Prompt user for name
+    getline(cin, studentName);            // get and store student name
 
     newStudent.name = studentName; // assign user inputted name to new student
     newStudent.classGrade =
-        studentGrade; // assign user inputted grade to new student
+        getValidGradeFromInput(); // validate and assign user
+                                  // inputted grade to new student
 
     return newStudent;
 }
+
+//********************************************************************
+//
+//  main function
+//
+//
+//
+//********************************************************************
 
 int main()
 {
@@ -75,10 +137,10 @@ int main()
         case QUIT_CHOICE: // case for input = 4
             mainLoopActive = false;
             break;
-        default:                              // case for unhandled inputs
-            cout << "Invalid choice entered." // output to user that input is
-                                              // invalid
-                 << "Please enter a valid selection within range (1 - 3)";
+        default: // case for unhandled inputs
+            cout << "ERROR: Invalid choice entered." // output to user that
+                                                     // input is invalid
+                 << "Please enter a valid selection within range (1 - 4)\n";
         }
 
     } while (mainLoopActive);
