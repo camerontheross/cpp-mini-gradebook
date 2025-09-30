@@ -102,6 +102,54 @@ Student createStudent()
     return newStudent;
 }
 
+/*
+ *  Purpose :   Enter a fixed number of students into a class
+ *  Input   :   vector reference as an argument
+ *  Process :   Using a for loop and vector.push_back()
+ *  Output  :   None
+ */
+
+void counterControlledInput(vector<Student> &studentClass)
+{
+    Student newStudent;   // a student struct to store user created students
+    int numberOfStudents; // stores how many students the user wants to enter
+    bool isValidNumberOfStudents; // flag for input validation
+
+    // use a do-while loop to validate input
+    do
+    {
+        // prompt user for to enter a number of students greater than 1
+        cout
+            << "Enter the number of student(s) you would like to add (at least "
+               "1): ";
+        // store how many students user wants to enter
+        cin >> numberOfStudents;
+        clearInput(); // clear input after numeric value entered
+
+        isValidNumberOfStudents = (numberOfStudents >= 1);
+
+        if (!isValidNumberOfStudents)
+            cout
+                << "ERROR: invalid number of student(s) entered, please ensure "
+                   "value of at least 1 is entered.\n";
+
+    } while (!isValidNumberOfStudents);
+
+    // output how many students are being entered for feedback
+    cout << "Entering " << numberOfStudents << " student(s).\n";
+
+    for (int i = 1; i <= numberOfStudents; i++)
+    {
+        newStudent = createStudent(); // use create student function
+        studentClass.push_back(
+            newStudent); // push new student to back of vector
+    }
+    // provide user feedback
+    // indicate that program will return to the main menu
+    cout << numberOfStudents
+         << " student(s) successfuly entered. Returning to main menu." << endl;
+}
+
 //********************************************************************
 //
 //  main function
@@ -129,6 +177,7 @@ int main()
         switch (userChoice)
         {
         case COUNTER_CONTROL_CHOICE: // case for input = 1
+            counterControlledInput(userClass);
             break;
         case SENTINEL_CONTROL_CHOICE: // case for input = 2
             break;
