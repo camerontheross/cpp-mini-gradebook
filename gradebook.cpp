@@ -173,6 +173,7 @@ int main()
     {
         showMenu(); // call the method to print the menu
         cin >> userChoice;
+        clearInput(); // clear input
 
         switch (userChoice)
         {
