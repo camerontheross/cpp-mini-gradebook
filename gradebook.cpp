@@ -48,17 +48,16 @@ double getValidGradeFromInput()
                                                                   // grade
         cin >> studentGrade; // take input and store
         valueInRange =
-            (studentGrade > MIN_GRADE &&
-             studentGrade < MAX_GRADE); // checks if student grade is in range
+            (studentGrade >= MIN_GRADE &&
+             studentGrade <= MAX_GRADE); // checks if student grade is in range
 
         clearInput(); // clears input after numeric read
 
         if (!valueInRange)
         {
             // inform user value is out of range
-            cout << "ERROR: Invalid value, please enter a number between (0 - "
-                    "100).\n";
-            cin.clear();
+            cout << "ERROR: Invalid value,"
+                 << "please enter a number between (0 - 100).\n";
         }
     } while (!valueInRange);
     return studentGrade;
