@@ -1,7 +1,7 @@
 /*
  * gradebook.cpp
- *  Written By: Cameron Ross
- *  Last Edit : 30 September 2025
+ * Written By: Cameron Ross
+ * Last Edit : 6 October 2025
  */
 
 #include "Student.h"
@@ -19,7 +19,7 @@ const double MAX_GRADE = 100, MIN_GRADE = 0;
 /*
  *  Purpose :   Clear input
  *  Input   :   None
- *  Process :   Clear cin and ignore anything until enter key was hit
+ *  Process :   Clear cin and ignore anything until enter key was pressed
  *  Output  :   None
  */
 void clearInput()
