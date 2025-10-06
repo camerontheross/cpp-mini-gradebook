@@ -266,8 +266,8 @@ void printGradebook(vector<Student> &gradebook)
 	}
 
 	// output failing students
-	cout << "\nThe following students failed the class (socred 60% or lower): \n";
-	for (int i = 0; i < passed.size(); i++)
+	cout << "\nThe following students failed the class (scored 60% or lower): \n";
+	for (int i = 0; i < failed.size(); i++)
 	{
 		currentStudent = failed[i];
 		cout << "\n\t" << currentStudent.name << "\t\t" << currentStudent.classGrade
